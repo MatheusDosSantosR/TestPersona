@@ -62,6 +62,13 @@ export function generateData(): object {
     const getName = getRandomName()
     const getEmail = getRandomEmail(getName.firstName, getName.lastName)
 
+    //Adicionado zipCode
+    //Endereco
+    //Pais
+    //Estado
+    //Cidade
+    //Job title
+    
     return {
         firstName: getName.firstName,
         lastName: getName.lastName,
