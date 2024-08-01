@@ -1,3 +1,5 @@
+import { Faker, pt_BR } from '@faker-js/faker';
+
 function generateCPF(): string {
     // Função para gerar um número aleatório entre min e max (inclusivo)
     function getRandomInt(min: number, max: number): number {
@@ -30,8 +32,27 @@ function generateCPF(): string {
     return cpf.join('');
 }
 
+function getRandomName(): { firstName: string, lastName: string, fullName: string } {
+
+    const fakerBr = new Faker({locale: [pt_BR]})
+
+    const firstName = fakerBr.person.firstName();
+    const lastName = fakerBr.person.lastName();
+
+    const fullName = fakerBr.person.fullName({
+        'firstName':firstName,
+        'lastName': lastName
+    })
+    return { firstName, lastName, fullName};
+}
+
 export function generateData(): object {
+    const getName = getRandomName()
+
     return {
+        firstName: getName.firstName,
+        lastName: getName.lastName,
+        fullName: getName.fullName,
         cpf: generateCPF()
     }
 }
