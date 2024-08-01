@@ -43,16 +43,30 @@ function getRandomName(): { firstName: string, lastName: string, fullName: strin
         'firstName':firstName,
         'lastName': lastName
     })
-    return { firstName, lastName, fullName};
+    return { firstName, lastName, fullName };
+}
+
+function getRandomEmail(firstName: string, lastName: string): { email: string } {
+
+    const fakerBr = new Faker({locale: [pt_BR]})
+
+    const email = fakerBr.internet.email({
+        'firstName':firstName,
+        'lastName': lastName
+    })
+
+    return { email };
 }
 
 export function generateData(): object {
     const getName = getRandomName()
+    const getEmail = getRandomEmail(getName.firstName, getName.lastName)
 
     return {
         firstName: getName.firstName,
         lastName: getName.lastName,
         fullName: getName.fullName,
+        ...getEmail,
         cpf: generateCPF()
     }
 }
