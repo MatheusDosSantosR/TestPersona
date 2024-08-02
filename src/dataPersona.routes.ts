@@ -6,7 +6,7 @@ export const dataPersona = express.Router()
 
 dataPersona.get("/TestPerson", async (req : Request, res : Response) => {
     try {
-        const generate = generateData()
+        const generate = await generateData()
 
         if(!generate){
             return res.status(StatusCodes.NOT_FOUND).json({error : 'Nao foi possivel gerar os dados.'})
